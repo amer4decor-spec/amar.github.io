@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مؤسسة عمار التمكن للمقاولات العامة</title>
+  <meta name="description" content="مؤسسة عمار التمكن للمقاولات العامة — تنفيذ وتشطيب وديكور بجودة عالية ومواعيد دقيقة.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --green:#0aa86b;
+      --green-dark:#078156;
+      --green-600:#089862;
+      --text:#0f172a;
+      --muted:#5b6b7b;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --shadow:0 10px 30px rgba(15,23,42,.08);
+      --radius:18px;
+      --pad:22px;
+      --section-gap:110px;
+      --header-h:72px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Cairo",system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    /* خلفية زخرفية خفيفة */
+    .bg-ornament{
+      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(600px 300px at 90% -10%, rgba(10,168,107,.10), transparent 60%),
+        radial-gradient(600px 300px at -10% 100%, rgba(10,168,107,.08), transparent 60%),
+        linear-gradient(180deg, #ffffff, #f6faf7 35%, #f8fafc 70%);
+      animation:floatBg 16s ease-in-out infinite alternate;
+    }
+    @keyframes floatBg{
+      from{transform:translateY(0)}
+      to{transform:translateY(-24px)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .bg-ornament{animation:none}
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:1000;
+      height:var(--header-h);
+      background:rgba(255,255,255,.86);
+      backdrop-filter:saturate(140%) blur(8px);
+      box-shadow:0 1px 0 rgba(2,6,23,.06);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 18px 0 12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .brand img{height:44px; width:auto; border-radius:10px}
+    .brand h1{font-size:18px; margin:0; font-weight:800; letter-spacing:.2px}
+    .menu-btn{
+      border:0; background:transparent; font-size:28px; cursor:pointer; color:var(--text);
+    }
+    .cta-top{
+      display:none;
+    }
+    @media(min-width:1024px){
+      .cta-top{display:flex; align-items:center; gap:10px}
+      .cta-top .btn{display:inline-flex}
+    }
+
+    /* Buttons */
+    .btn{
+      padding:12px 18px;
+      border-radius:14px;
+      border:1px solid rgba(2,6,23,.08);
+      background:#fff; color:var(--text); font-weight:700; text-decoration:none;
+      box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover{transform:translateY(-2px); box-shadow:0 14px 32px rgba(15,23,42,.12)}
+    .btn-primary{
+      background:linear-gradient(135deg, var(--green), var(--green-dark));
+      color:#fff; border:0;
+    }
+    .btn-pill{border-radius:999px; padding:12px 20px}
+
+    /* Sidebar */
+    .sidebar{
+      position:fixed; top:0; right:-320px; width:320px; height:100dvh;
+      background:#0b1f17; color:#ffffff; z-index:1200; transition:right .35s ease;
+      padding:22px;
+      background:linear-gradient(180deg, #0f3427, #0b1f17);
+      box-shadow:-10px 0 30px rgba(0,0,0,.25);
+    }
+    .sidebar.active{right:0}
+    .side-header{display:flex; align-items:center; justify-content:space-between}
+    .side-close{background:transparent; border:0; color:#fff; font-size:26px; cursor:pointer}
+    .side-links{margin-top:20px; display:flex; flex-direction:column; gap:8px}
+    .side-links a{
+      color:#ffffff; text-decoration:none; font-weight:700; padding:12px 14px; border-radius:12px;
+      display:block; transition:background .2s ease, transform .2s ease;
+    }
+    .side-links a:hover{background:rgba(255,255,255,.08); transform:translateX(-4px)}
+    .side-cta{margin-top:auto; display:grid; gap:10px}
+    
+
+    /* Sections baseline */
+    section{scroll-margin-top:calc(var(--header-h) + 30px)}
+    .container{max-width:1200px; margin:0 auto; padding:0 18px}
+    .section{padding:var(--section-gap) 0}
+    .title{font-size:32px; margin:0 0 14px; font-weight:800}
+    .subtitle{color:var(--muted); margin:0 0 34px; font-size:18px}
+
+    /* Hero */
+    .hero{
+      padding: clamp(90px, 14vh, 160px) 0 80px;
+    }
+    .hero-grid{
+      display:grid; gap:28px; align-items:center;
+      grid-template-columns: 1.15fr .85fr;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      background:#e9fbf3; color:#065f46; padding:8px 12px; border-radius:999px; font-weight:700; font-size:13px;
+      border:1px solid #c9f3e2;
+    }
+    .hero h2{font-size:35px; line-height:1.15; margin:14px 0 12px; font-weight:800}
+    .hero p{color:var(--muted); font-size:18px; margin:0 0 22px}
+    .hero-cta{display:flex; gap:10px; flex-wrap:wrap}
+    .hero-media{
+      position:relative; aspect-ratio:16/11; border-radius:24px; overflow:hidden; box-shadow:var(--shadow);
+      background:#0a2c20;
+    }
+    .hero-media::after{
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(800px 300px at 90% -20%, rgba(255,255,255,.15), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-media img, .hero-media video{width:100%; height:100%; object-fit:cover; display:block; opacity:.95}
+    .hero-stats{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px;
+    }
+    .stat{background:var(--card); border-radius:14px; padding:14px; text-align:center; box-shadow:var(--shadow)}
+    .stat b{display:block; font-size:22px}
+    .stat span{color:var(--muted); font-size:13px}
+
+    /* Features strip */
+    .features{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+    }
+    .feature{
+      background:var(--card); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);
+      display:flex; align-items:center; gap:12px;
+    }
+    .feature i{font-style:normal; font-weight:800; color:var(--green)}
+    .feature small{color:var(--muted)}
+
+    /* Services */
+    .cards{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    .card{
+      background:var(--card); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover{transform:translateY(-6px); box-shadow:0 18px 44px rgba(15,23,42,.14)}
+    .card .icon{
+      width:48px; height:48px; border-radius:14px; display:grid; place-items:center; font-size:22px; font-weight:800; color:#fff;
+      background:linear-gradient(135deg, var(--green), var(--green-dark));
+      margin-bottom:10px;
+    }
+    .card h4{margin:6px 0 6px; font-size:18px}
+    .card p{color:var(--muted); margin:0; font-size:14px; line-height:1.7}
+
+    /* Projects - slider (3 side-by-side) */
+    .slider-wrap{position:relative; overflow:hidden; border-radius:18px}
+    .slider{
+      display:flex; gap:16px; transition:transform 800ms cubic-bezier(.2,.8,.2,1);
+    }
+    .slide{
+      flex:0 0 calc((100% - 32px) / 3); /* ثلاث صور مع فجوتين 16px */
+      background:var(--card); border-radius:20px; box-shadow:var(--shadow); overflow:hidden;
+    }
+    .slide .thumb{width:100%; aspect-ratio:4/3; object-fit:cover; display:block}
+    .slide .meta{padding:12px 14px}
+    .slide .meta b{display:block}
+    .slide .meta small{color:var(--muted)}
+    .proj-ctrl{
+      position:absolute; inset-inline:10px; top:50%; translate:0 -50%;
+      display:flex; justify-content:space-between; pointer-events:none;
+    }
+    .ctrl{
+      pointer-events:auto; border:0; width:40px; height:40px; border-radius:50%;
+      display:grid; place-items:center; background:#ffffff; box-shadow:var(--shadow); cursor:pointer; font-weight:800;
+      transition:transform .2s ease;
+    }
+    .ctrl:hover{transform:translateY(-2px)}
+    .gallery{
+      margin-top:16px; display:grid; grid-template-columns:repeat(6,1fr); gap:10px;
+    }
+    .gallery img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:14px; cursor:pointer; box-shadow:var(--shadow)}
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed; inset:0; background:rgba(0,0,0,.7); display:none; align-items:center; justify-content:center; z-index:1400;
+    }
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:min(92vw,1200px); max-height:86vh; border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .lightbox .x{position:absolute; top:14px; inset-inline-end:16px; background:#fff; border:0; width:44px; height:44px; border-radius:50%; font-size:20px; cursor:pointer}
+
+    /* Testimonials */
+    .t-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .t{
+      background:var(--card); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);
+    }
+    .t b{display:block; margin-bottom:6px}
+    .t small{color:var(--muted)}
+
+    /* FAQ */
+    .faq{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .q{
+      background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
+    }
+    .q summary{
+      list-style:none; cursor:pointer; padding:16px 18px; font-weight:800; position:relative;
+    }
+    .q summary::-webkit-details-marker{display:none}
+    .q summary:after{content:"+"; position:absolute; inset-inline-start:7px; top:14px; font-weight:800}
+    .q[open] summary:after{content:"–"}
+    .q .a{padding:0 18px 16px; color:var(--muted); line-height:1.8}
+
+    /* Contact */
+    .contact{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:start
+    }
+    .form{
+      background:var(--card); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);
+    }
+    .form .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .form label{display:block; font-weight:700; font-size:13px; margin-bottom:6px}
+    .form input,.form textarea{
+      width:100%; border:1px solid #e6eef1; border-radius:12px; padding:12px 14px; outline:none; font-family:inherit;
+      background:#fff;
+    }
+    .form textarea{min-height:120px; resize:vertical}
+    .info{
+      display:grid; gap:12px;
+      background:linear-gradient(135deg, #e9fbf3, #ffffff);
+      border:1px solid #c9f3e2; border-radius:var(--radius); padding:var(--pad);
+      box-shadow:var(--shadow);
+    }
+    .info b{font-size:18px}
+    .info p{margin:0; color:#064e3b}
+    .info a{color:#000000; text-decoration:none; font-weight:700}
+
+    /* Footer */
+    footer{
+      margin-top:40px; padding:18px; text-align:center; color:#5b6b7b; font-size:14px;
+      background:#f1f5f9; border-top:1px solid #e5eff5;
+    }
+
+    /* WhatsApp FAB */
+    .fab{
+      position:fixed; inset-inline-end:18px; bottom:18px; z-index:1500;
+      display:inline-flex; align-items:center; gap:8px;
+      background:linear-gradient(135deg, #089863e5, #065f46d8);
+      color:#fff; text-decoration:none; font-weight:800; padding:12px 16px; border-radius:999px; box-shadow:var(--shadow);
+    }
+
+    /* Reveal on scroll */
+    .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
+    .reveal.visible{opacity:1; transform:none}
+
+    /* Responsive */
+    @media(max-width:1024px){
+      .hero-grid{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .t-grid{grid-template-columns:1fr 1fr}
+      .faq{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(4,1fr)}
+    }
+    @media(max-width:640px){
+      .cards{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .t-grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+      .slide{flex:0 0 calc((100% - 16px) / 2)} /* موبايل: صورتين */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-ornament" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header>
+    <button class="menu-btn" aria-label="فتح القائمة" onclick="toggleMenu()">☰</button>
+    <div class="brand">
+      <img src="شعار ملون.png" alt="شعار المؤسسة">
+      <h1>مؤسسة عمار التمكن للمقاولات العامة</h1>
+    </div>
+    <div class="cta-top">
+      <a class="btn" href="#projects">مشاريعنا</a>
+      <a class="btn btn-primary btn-pill" href="#contact">اطلب عرض سعر</a>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar" aria-hidden="true">
+    <div class="side-header">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="a1.png" alt="" style="height:45px;border-radius:8px">
+        <strong></strong>
+      </div>
+      <button class="side-close" aria-label="إغلاق القائمة" onclick="toggleMenu()">✖</button>
+    </div>
+    <nav class="side-links">
+      <a href="#hero" onclick="toggleMenu()">الرئيسية</a>
+      <a href="#services" onclick="toggleMenu()">خدماتنا</a>
+      <a href="#projects" onclick="toggleMenu()">مشاريعنا</a>
+      <a href="#faq" onclick="toggleMenu()">الأسئلة الشائعة</a>
+      <a href="#contact" onclick="toggleMenu()">تواصل معنا</a>
+    </nav>
+    <div class="side-cta">
+      <a class="btn btn-primary" href="#contact">احجز استشارة</a>
+      <a class="btn" href="https://wa.me/966500000000" target="_blank" rel="noopener">واتساب سريع</a>
+    </div>
+  </aside>
+
+  <!-- Hero -->
+  <section id="hero" class="hero container">
+    <div class="hero-grid">
+      <div>
+        <span class="badge">جودة • التزام • ابتكار</span>
+        <h2>تصميم و تنفيذ أعمال التشطيب و التأثيث</h2>
+        <h3>فريقك الذي سيحول رغباتك إلى حقيقة</h3>
+        <p>حلول مقاولات متكاملة: إنشاء، تشطيب، ديكور، وتأثيث. فريق هندسي محترف، إشراف دقيق، وتسعير شفاف.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-pill" href="#contact">اطلب عرض سعر الآن</a> 
+          <a class="btn btn-pill" href="#projects">شاهد أعمالنا</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b data-count="120">0</b><span>مشروع مُنجز</span></div>
+          <div class="stat"><b data-count="98">0</b><span>عميل سعيد</span></div>
+          <div class="stat"><b data-count="5">0</b><span>سنوات خبرة</span></div>
+        </div>
+      </div>
+      <div class="hero-media reveal">
+        <!-- يمكنك وضع فيديو صامت بدلاً من الصورة -->
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit" alt="أعمال تنفيذ وتشطيب">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features strip -->
+<section class="section container">
+  <div class="features">
+    <div class="feature reveal">
+      <i>✓</i>
+      <div>
+        <b>أسعار تنافسية</b>
+        <br>
+        <small>عروض واضحة بلا تكاليف خفية</small>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <i>✓</i>
+      <div>
+        <b>تصاميم مبتكرة</b>
+        <br>
+        <small>حلول عصرية تلائم ذوقك</small>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <i>✓</i>
+      <div>
+        <b>جودة تنفيذ</b>
+        <br>
+        <small>مواد معتمدة ومعايير عالية</small>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <i>✓</i>
+      <div>
+        <b>التزام بالمواعيد</b>
+        <br>
+        <small>جدولة دقيقة وتسليم في الوقت</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Services -->
+  <section id="services" class="section container">
+    <h3 class="title">خدماتنا</h3>
+    <p class="subtitle">نقدّم باقة متكاملة من حلول المقاولات العامة لتلبية احتياجات المشاريع السكنية والتجارية.</p>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="icon">🏗️</div>
+        <h4>إنشاء المباني</h4>
+        <p>تنفيذ هيكل خرساني وحديدي مع التزام تام بالمخططات الهندسية والمواصفات.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🎨</div>
+        <h4>التشطيب والديكور</h4>
+        <p>تشطيبات فاخرة، أسقف جبسية، دهانات، وأرضيات بجودة عالية.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🛠️</div>
+        <h4>أعمال الصيانة</h4>
+        <p>صيانة كهرباء وسباكة وعوازل ومعالجة تشققات وفق معايير السلامة.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🏢</div>
+        <h4>تأثيث المكاتب</h4>
+        <p>تصميم وتنفيذ مساحات عمل مريحة وفعالة تعزز إنتاجية الفريق.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section container">
+    <h3 class="title">مشاريعنا</h3>
+    <p class="subtitle">عينة من أعمالنا الأخيرة 
+    <!-- Slider 3-up -->
+    <div class="slider-wrap reveal">
+      <div class="slider" id="projSlider">
+        <!-- شريحة 1 -->
+        <article class="slide">
+          <img class="thumb" src="كبير 1.jpeg" alt="مبنى سكني">
+          <div class="meta"><b>مبنى سكني</b><small>هياكل + تشطيب خارجي</small></div>
+        </article>
+        <!-- شريحة 2 -->
+        <article class="slide">
+          <img class="thumb" src="كبير 2.jpeg" alt="تشطيب داخلي">
+          <div class="meta"><b>تشطيب داخلي</b><small>دهانات وأرضيات فاخرة</small></div>
+        </article>
+        <!-- شريحة 3 -->
+        <article class="slide">
+          <img class="thumb" src="كبير 3.jpg" alt="فيلا سكنية">
+          <div class="meta"><b>مكتب فرادة</b><small>تنفيذ كامل</small></div>
+        </article>
+      </div>
+
+     
+
+    <!-- معرض صور صغير يفتح Lightbox -->
+    <div class="gallery reveal" id="gallery">
+      <img src="صغير1.jpg" alt="مشروع 1">
+      <img src="صغير2.jpg" alt="مشروع 2">
+      <img src="صغير3.jpg" alt="مشروع 3">
+      <img src="صغير4.jpeg" alt="مشروع 4">
+      <img src="صغير 5.jpg" alt="مشروع 5">
+      <img src="صغير6.JPG" alt="مشروع 6">
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="x" aria-label="إغلاق">✖</button>
+    <img alt="">
+  </div>
+
+  <!-- Testimonials -->
+  <section class="section container">
+    <h3 class="title">ماذا يقول عملاؤنا</h3>
+    <p class="subtitle">ثقتكم شهادة نعتز بها.</p>
+    <div class="t-grid">
+      <div class="t reveal"><b>أ. ناصر</b><small>التزام بالمواعيد وجودة بالتنفيذ. شكرًا للفريق كاملًا.</small></div>
+      <div class="t reveal"><b>م. هيا</b><small>تعامل راقٍ وتفاصيل دقيقة—النتيجة أفضل من المتوقع.</small></div>
+      <div class="t reveal"><b>أ. محمد</b><small>أسعار واضحة، إشراف ممتاز، وخدمة بعد التسليم.</small></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section container">
+    <h3 class="title">الأسئلة الشائعة</h3>
+    <div class="faq">
+      <details class="q reveal">
+        <h></h> <summary>كيف يتم تسعير المشروع؟</summary>
+        <div class="a">بعد المعاينة واستلام المخططات نُعد عرض سعر تفصيلي يشمل المواد والأيدي العاملة والمدة.</div>
+      </details>
+      <details class="q reveal">
+        <summary>ما مدة التنفيذ المتوقعة؟</summary>
+        <div class="a">تختلف وفق حجم المشروع ونطاقه، ونلتزم بجدول زمني مُعتمد مع تحديثات دورية.</div>
+      </details>
+      <details class="q reveal">
+        <summary>هل تقدمون ضمانًا على الأعمال؟</summary>
+        <div class="a">نعم، نوفر ضمانًا على أعمالنا وفق بنود العقد ونوع الأعمال المنفذة.</div>
+      </details>
+      <details class="q reveal">
+        <summary>هل تتولون استخراج التصاريح؟</summary>
+        <div class="a">نساعد في الإجراءات والتصاريح بالتنسيق مع الجهات المختصة حسب الحاجة.</div>
+      </details>
+    </div>
+  </section>
+
+<!-- Contact -->
+<section id="contact" class="section container">
+  <h3 class="title">تواصل معنا</h3>
+  <p class="subtitle">نخدمكم في الرياض وكافة مناطق المملكة.</p>
+  <div class="contact">
+    <form class="form reveal" id="contactForm">
+      <div class="row">
+        <div>
+          <label>الاسم</label>
+          <input type="text" name="name" placeholder="اسمك الكريم" required>
+        </div>
+        <div>
+          <label>الهاتف</label>
+          <input type="tel" name="phone" placeholder="05xxxxxxxx" required>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>البريد الإلكتروني</label>
+          <input type="email" name="email" placeholder="name@example.com">
+        </div>
+        <div>
+          <label>نوع الخدمة</label>
+          <input type="text" name="service" placeholder="إنشاء / تشطيب / صيانة ...">
+        </div>
+      </div>
+      <div style="margin-top:10px">
+        <label>رسالتك</label>
+        <textarea name="message" placeholder="اكتب تفاصيل مشروعك"></textarea>
+      </div>
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+        <button type="submit" class="btn btn-primary">إرسال الطلب</button>
+        <a class="btn" href="mailto:info@company.com">مراسلة عبر البريد</a>
+      </div>
+    </form>
+
+   
+
+
+      <aside class="info reveal">
+        <b>مؤسسة عمار التمكن للمقاولات العامة</b>
+        <p>📍 الرياض – المملكة العربية السعودية</p>
+        <p>📞 0530593696 </p>
+        <p>✉️ amer4decor@gmail.com </p>
+        <p>⏱️ الأحد – الخميس: 9 صباحًا – 6 مساءً</p>
+        <a class="btn btn-primary btn-pill" href="https://wa.me/966530593696" target="_blank" rel="noopener">تواصل واتساب</a>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 جميع الحقوق محفوظة — مؤسسة عمار التمكن للمقاولات العامة
+  </footer>
+
+  <!-- واتساب ثابت -->
+  <a class="fab" href="https://wa.me/966530593696" target="_blank" rel="noopener" aria-label="راسلنا على واتساب">💬 واتس اب</a>
+
+<script>
+  // === Sidebar ===
+  function toggleMenu(){
+    const el = document.getElementById('sidebar');
+    const on = el.classList.toggle('active');
+    el.setAttribute('aria-hidden', on ? 'false' : 'true');
+  }
+
+  // === Reveal on scroll ===
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ 
+        e.target.classList.add('visible'); 
+        io.unobserve(e.target); 
+      }
+    });
+  },{rootMargin:"-10% 0px -10% 0px"});
+  revealEls.forEach(el=>io.observe(el));
+
+  // === Counters ===
+  const counters = document.querySelectorAll('[data-count]');
+  const io2 = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target, to=+el.dataset.count; let n=0;
+        const step = Math.ceil(to/60);
+        const t=setInterval(()=>{
+          n = Math.min(to, n+step);
+          el.textContent=n.toLocaleString('ar-EG');
+          if(n>=to) clearInterval(t);
+        }, 20);
+        io2.unobserve(el);
+      }
+    });
+  },{threshold:.6});
+  counters.forEach(el=>io2.observe(el));
+
+  // === Projects slider (3-up) ===
+  const slider = document.getElementById('projSlider');
+  const slides = Array.from(slider.children);
+  let idx = 0, autoTimer;
+  function calcStep(){ return slides[0].offsetWidth; }
+  function go(to){
+    const visible = 3; // عدد الظاهر على الديسكتوب
+    idx = (to + slides.length) % (slides.length - (visible - 1));
+    slider.style.transform = `translateX(-${idx * calcStep()}px)`;
+  }
+  function moveProjects(dir){ stopAuto(); go(idx + dir); startAuto(); }
+  function startAuto(){ autoTimer = setInterval(()=>go(idx+1), 4000); }
+  function stopAuto(){ clearInterval(autoTimer); }
+  startAuto();
+  slider.addEventListener('mouseenter', stopAuto);
+  slider.addEventListener('mouseleave', startAuto);
+  window.addEventListener('resize', ()=>go(idx));
+
+  // === Lightbox ===
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  const gal = document.getElementById('gallery');
+  gal.addEventListener('click', (e)=>{
+    if(e.target.tagName==='IMG'){
+      lbImg.src = e.target.src.replace(/w=\d+/, 'w=1600');
+      lb.classList.add('active');
+    }
+  });
+  lb.querySelector('.x').onclick = ()=> lb.classList.remove('active');
+  lb.addEventListener('click', (e)=>{ if(e.target===lb) lb.classList.remove('active'); });
+
+  // إغلاق Sidebar و Lightbox عند الضغط على Escape
+  document.addEventListener('keydown', (e)=>{
+    if(e.key==='Escape'){
+      const side = document.getElementById('sidebar');
+      if(side.classList.contains('active')) toggleMenu();
+      if(lb.classList.contains('active')) lb.classList.remove('active');
+    }
+  });
+
+  // === Form submission to Google Sheets ===
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // منع إعادة تحميل الصفحة
+
+  const form = this; // حفظ المرجع
+  const data = {
+    name: form.name.value,
+    phone: form.phone.value,
+    email: form.email.value,
+    service: form.service.value,
+    message: form.message.value
+  };
+
+  fetch('https://script.google.com/macros/s/AKfycbzt3gDkyRg4JX6WuxByZCuaOVzpedozHzY0n1HeCykErFHp-hL_xe1T51wfd0jZtOTilA/exec', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => res.text())
+  .then(response => {
+    alert('تم إرسال طلبك بنجاح!');
+    form.reset(); // إعادة ضبط النموذج
+  })
+  .catch(err => {
+    console.error(err);
+    alert('حدث خطأ، حاول مرة أخرى.');
+  });
+});
+
+</script>
+
+</body>
+</html>
