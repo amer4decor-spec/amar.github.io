@@ -2,17 +2,17 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>مؤسسة عمار التمكن للمقاولات العامة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <title>AMAR</title>
   <meta name="description" content="مؤسسة عمار التمكن للمقاولات العامة — تنفيذ وتشطيب وديكور بجودة عالية ومواعيد دقيقة.">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.png">
 
   <style>
     :root{
       --green:#0aa86b;
       --green-dark:#078156;
-      --green-600:#089862;
       --text:#0f172a;
       --muted:#5b6b7b;
       --bg:#f8fafc;
@@ -30,9 +30,9 @@
       font-family:"Cairo",system-ui,-apple-system,Segoe UI,Roboto,Arial;
       color:var(--text);
       background:var(--bg);
+      overflow-x:hidden; /* يمنع تمرير أفقي */
     }
 
-    /* خلفية زخرفية خفيفة */
     .bg-ornament{
       position:fixed; inset:0; z-index:-1; pointer-events:none;
       background:
@@ -50,7 +50,6 @@
       .bg-ornament{animation:none}
     }
 
-    /* Header */
     header{
       position:sticky; top:0; z-index:1000;
       height:var(--header-h);
@@ -58,7 +57,7 @@
       backdrop-filter:saturate(140%) blur(8px);
       box-shadow:0 1px 0 rgba(2,6,23,.06);
       display:flex; align-items:center; justify-content:space-between;
-      padding:0 18px 0 12px;
+      padding:0 12px;
     }
     .brand{
       display:flex; align-items:center; gap:12px;
@@ -76,7 +75,6 @@
       .cta-top .btn{display:inline-flex}
     }
 
-    /* Buttons */
     .btn{
       padding:12px 18px;
       border-radius:14px;
@@ -92,12 +90,11 @@
     }
     .btn-pill{border-radius:999px; padding:12px 20px}
 
-    /* Sidebar */
     .sidebar{
       position:fixed; top:0; right:-320px; width:320px; height:100dvh;
-      background:#0b1f17; color:#ffffff; z-index:1200; transition:right .35s ease;
-      padding:22px;
       background:linear-gradient(180deg, #0f3427, #0b1f17);
+      color:#ffffff; z-index:1200; transition:right .35s ease;
+      padding:22px;
       box-shadow:-10px 0 30px rgba(0,0,0,.25);
     }
     .sidebar.active{right:0}
@@ -110,21 +107,18 @@
     }
     .side-links a:hover{background:rgba(255,255,255,.08); transform:translateX(-4px)}
     .side-cta{margin-top:auto; display:grid; gap:10px}
-    
 
-    /* Sections baseline */
     section{scroll-margin-top:calc(var(--header-h) + 30px)}
-    .container{max-width:1200px; margin:0 auto; padding:0 18px}
+    .container{max-width:1200px; margin:0 auto; padding:0 12px}
     .section{padding:var(--section-gap) 0}
     .title{font-size:32px; margin:0 0 14px; font-weight:800}
     .subtitle{color:var(--muted); margin:0 0 34px; font-size:18px}
 
-    /* Hero */
     .hero{
-      padding: clamp(90px, 14vh, 160px) 0 80px;
+      padding: clamp(80px, 12vh, 140px) 0 60px;
     }
     .hero-grid{
-      display:grid; gap:28px; align-items:center;
+      display:grid; gap:24px; align-items:center;
       grid-template-columns: 1.15fr .85fr;
     }
     .badge{
@@ -139,11 +133,6 @@
       position:relative; aspect-ratio:16/11; border-radius:24px; overflow:hidden; box-shadow:var(--shadow);
       background:#0a2c20;
     }
-    .hero-media::after{
-      content:""; position:absolute; inset:0;
-      background:radial-gradient(800px 300px at 90% -20%, rgba(255,255,255,.15), transparent 60%);
-      pointer-events:none;
-    }
     .hero-media img, .hero-media video{width:100%; height:100%; object-fit:cover; display:block; opacity:.95}
     .hero-stats{
       display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px;
@@ -152,18 +141,18 @@
     .stat b{display:block; font-size:22px}
     .stat span{color:var(--muted); font-size:13px}
 
-    /* Features strip */
     .features{
       display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
     }
     .feature{
       background:var(--card); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);
       display:flex; align-items:center; gap:12px;
+      transition:transform .3s ease, box-shadow .3s ease;
     }
+    .feature:hover{transform:translateY(-4px); box-shadow:0 16px 40px rgba(15,23,42,.2);}
     .feature i{font-style:normal; font-weight:800; color:var(--green)}
     .feature small{color:var(--muted)}
 
-    /* Services */
     .cards{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
     .card{
       background:var(--card); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);
@@ -178,35 +167,25 @@
     .card h4{margin:6px 0 6px; font-size:18px}
     .card p{color:var(--muted); margin:0; font-size:14px; line-height:1.7}
 
-    /* Projects - slider (3 side-by-side) */
     .slider-wrap{position:relative; overflow:hidden; border-radius:18px}
     .slider{
       display:flex; gap:16px; transition:transform 800ms cubic-bezier(.2,.8,.2,1);
     }
     .slide{
-      flex:0 0 calc((100% - 32px) / 3); /* ثلاث صور مع فجوتين 16px */
+      flex:0 0 calc((100% - 32px) / 3);
       background:var(--card); border-radius:20px; box-shadow:var(--shadow); overflow:hidden;
+      transition:transform .3s ease, box-shadow .3s ease;
     }
+    .slide:hover{transform:translateY(-4px); box-shadow:0 16px 40px rgba(15,23,42,.2);}
     .slide .thumb{width:100%; aspect-ratio:4/3; object-fit:cover; display:block}
     .slide .meta{padding:12px 14px}
     .slide .meta b{display:block}
     .slide .meta small{color:var(--muted)}
-    .proj-ctrl{
-      position:absolute; inset-inline:10px; top:50%; translate:0 -50%;
-      display:flex; justify-content:space-between; pointer-events:none;
-    }
-    .ctrl{
-      pointer-events:auto; border:0; width:40px; height:40px; border-radius:50%;
-      display:grid; place-items:center; background:#ffffff; box-shadow:var(--shadow); cursor:pointer; font-weight:800;
-      transition:transform .2s ease;
-    }
-    .ctrl:hover{transform:translateY(-2px)}
     .gallery{
       margin-top:16px; display:grid; grid-template-columns:repeat(6,1fr); gap:10px;
     }
     .gallery img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:14px; cursor:pointer; box-shadow:var(--shadow)}
 
-    /* Lightbox */
     .lightbox{
       position:fixed; inset:0; background:rgba(0,0,0,.7); display:none; align-items:center; justify-content:center; z-index:1400;
     }
@@ -214,7 +193,6 @@
     .lightbox img{max-width:min(92vw,1200px); max-height:86vh; border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.4)}
     .lightbox .x{position:absolute; top:14px; inset-inline-end:16px; background:#fff; border:0; width:44px; height:44px; border-radius:50%; font-size:20px; cursor:pointer}
 
-    /* Testimonials */
     .t-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
     .t{
       background:var(--card); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);
@@ -222,7 +200,6 @@
     .t b{display:block; margin-bottom:6px}
     .t small{color:var(--muted)}
 
-    /* FAQ */
     .faq{display:grid; grid-template-columns:1fr 1fr; gap:16px}
     .q{
       background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
@@ -235,7 +212,6 @@
     .q[open] summary:after{content:"–"}
     .q .a{padding:0 18px 16px; color:var(--muted); line-height:1.8}
 
-    /* Contact */
     .contact{
       display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:start
     }
@@ -259,13 +235,11 @@
     .info p{margin:0; color:#064e3b}
     .info a{color:#000000; text-decoration:none; font-weight:700}
 
-    /* Footer */
     footer{
-      margin-top:40px; padding:18px; text-align:center; color:#5b6b7b; font-size:14px;
+      margin-top:40px; padding:15px; text-align:center; color:#5b6b7b; font-size:12px;
       background:#f1f5f9; border-top:1px solid #e5eff5;
     }
 
-    /* WhatsApp FAB */
     .fab{
       position:fixed; inset-inline-end:18px; bottom:18px; z-index:1500;
       display:inline-flex; align-items:center; gap:8px;
@@ -277,7 +251,7 @@
     .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
     .reveal.visible{opacity:1; transform:none}
 
-    /* Responsive */
+    /* ==== RESPONSIVE MOBILE ==== */
     @media(max-width:1024px){
       .hero-grid{grid-template-columns:1fr}
       .features{grid-template-columns:repeat(2,1fr)}
@@ -291,8 +265,16 @@
       .cards{grid-template-columns:1fr}
       .features{grid-template-columns:1fr}
       .t-grid{grid-template-columns:1fr}
-      .gallery{grid-template-columns:repeat(3,1fr)}
-      .slide{flex:0 0 calc((100% - 16px) / 2)} /* موبايل: صورتين */
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .slide{flex:0 0 100%}
+      .hero h2{font-size:26px; line-height:1.2}
+      .hero h3{font-size:18px}
+      .hero p{font-size:16px}
+      .hero-media{border-radius:16px; aspect-ratio:16/9;}
+      .container{padding:0 12px}
+      header{padding:0 12px}
+      .sidebar{width:85%}
+      .feature, .card, .t, .q{padding:16px; border-radius:14px}
     }
   </style>
 </head>
@@ -305,7 +287,7 @@
     <button class="menu-btn" aria-label="فتح القائمة" onclick="toggleMenu()">☰</button>
     <div class="brand">
       <img src="شعار ملون.png" alt="شعار المؤسسة">
-      <h1>مؤسسة عمار التمكن للمقاولات العامة</h1>
+      <h1>مؤسسة عمار التمكن  </h1>
     </div>
     <div class="cta-top">
       <a class="btn" href="#projects">مشاريعنا</a>
@@ -410,22 +392,22 @@
       <div class="card reveal">
         <div class="icon">🏗️</div>
         <h4>الأعمال الإنشائية</h4>
-        <p></p>
+        <p>نبني الأساس المتين لمستقبل مشروعك</p>
       </div>
       <div class="card reveal">
         <div class="icon">🎨</div>
         <h4>التشطيب و الديكورات</h4>
-        <p></p>
+        <p>من المساحة العادية إلى لمسة استثنائية</p>
       </div>
       <div class="card reveal">
         <div class="icon">🛠️</div>
         <h4>التصميم الداخلي و المخططات</h4>
-        <p></p>
+        <p>من المخطط إلى المسكن الذي تحلم به</p>
       </div>
       <div class="card reveal">
         <div class="icon">🏢</div>
         <h4>التأثير المنزلي و المكتبي</h4>
-        <p></p>
+        <p>نحوّل المكان إلى تجربة فريدة</p>
       </div>
     </div>
   </section>
@@ -514,35 +496,35 @@
   <p class="subtitle">نخدمكم في الرياض وكافة مناطق المملكة.</p>
   <div class="contact">
     <form class="form reveal" id="contactForm">
-      <div class="row">
-        <div>
-          <label>الاسم</label>
-          <input type="text" name="name" placeholder="اسمك الكريم" required>
-        </div>
-        <div>
-          <label>الهاتف</label>
-          <input type="tel" name="phone" placeholder="05xxxxxxxx" required>
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label>البريد الإلكتروني</label>
-          <input type="email" name="email" placeholder="name@example.com">
-        </div>
-        <div>
-          <label>نوع الخدمة</label>
-          <input type="text" name="service" placeholder="إنشاء / تشطيب / صيانة ...">
-        </div>
-      </div>
-      <div style="margin-top:10px">
-        <label>رسالتك</label>
-        <textarea name="message" placeholder="اكتب تفاصيل مشروعك"></textarea>
-      </div>
-      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
-        <button type="submit" class="btn btn-primary">إرسال الطلب</button>
-        <a class="btn" href="mailto:info@company.com">مراسلة عبر البريد</a>
-      </div>
-    </form>
+  <div class="row">
+    <div>
+      <label>الاسم</label>
+      <input type="text" name="name" placeholder="اسمك الكريم" required>
+    </div>
+    <div>
+      <label>الهاتف</label>
+      <input type="tel" name="phone" placeholder="05xxxxxxxx" required>
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <label>البريد الإلكتروني</label>
+      <input type="email" name="email" placeholder="name@example.com">
+    </div>
+    <div>
+      <label>نوع الخدمة</label>
+      <input type="text" name="service" placeholder="إنشاء / تشطيب / صيانة ...">
+    </div>
+  </div>
+  <div style="margin-top:10px">
+    <label>رسالتك</label>
+    <textarea name="message" placeholder="اكتب تفاصيل مشروعك"></textarea>
+  </div>
+  <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+    <button type="submit" class="btn btn-primary">إرسال الطلب</button>
+    <a class="btn" href="mailto:info@company.com">مراسلة عبر البريد</a>
+  </div>
+</form>
 
    
 
@@ -643,37 +625,12 @@
     }
   });
 
-  // === Form submission to Google Sheets ===
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault(); // منع إعادة تحميل الصفحة
 
-  const form = this; // حفظ المرجع
-  const data = {
-    name: form.name.value,
-    phone: form.phone.value,
-    email: form.email.value,
-    service: form.service.value,
-    message: form.message.value
-  };
 
-  fetch('https://script.google.com/macros/s/AKfycbzt3gDkyRg4JX6WuxByZCuaOVzpedozHzY0n1HeCykErFHp-hL_xe1T51wfd0jZtOTilA/exec', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' }
-  })
-  .then(res => res.text())
-  .then(response => {
-    alert('تم إرسال طلبك بنجاح!');
-    form.reset(); // إعادة ضبط النموذج
-  })
-  .catch(err => {
-    console.error(err);
-    alert('حدث خطأ، حاول مرة أخرى.');
-  });
-});
+
+
+
 
 </script>
-
 </body>
 </html>
-
