@@ -30,7 +30,7 @@
       font-family:"Cairo",system-ui,-apple-system,Segoe UI,Roboto,Arial;
       color:var(--text);
       background:var(--bg);
-      overflow-x:hidden; /* يمنع تمرير أفقي */
+      overflow-x:hidden;
     }
 
     .bg-ornament{
@@ -90,8 +90,9 @@
     }
     .btn-pill{border-radius:999px; padding:12px 20px}
 
+    /* Sidebar */
     .sidebar{
-      position:fixed; top:0; right:-320px; width:320px; height:100dvh;
+      position:fixed; top:0; right:-320px; width:320px; height:100vh;
       background:linear-gradient(180deg, #0f3427, #0b1f17);
       color:#ffffff; z-index:1200; transition:right .35s ease;
       padding:22px;
@@ -114,6 +115,7 @@
     .title{font-size:32px; margin:0 0 14px; font-weight:800}
     .subtitle{color:var(--muted); margin:0 0 34px; font-size:18px}
 
+    /* Hero */
     .hero{
       padding: clamp(80px, 12vh, 140px) 0 60px;
     }
@@ -141,6 +143,7 @@
     .stat b{display:block; font-size:22px}
     .stat span{color:var(--muted); font-size:13px}
 
+    /* Features / Cards / Testimonials */
     .features{
       display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
     }
@@ -167,6 +170,7 @@
     .card h4{margin:6px 0 6px; font-size:18px}
     .card p{color:var(--muted); margin:0; font-size:14px; line-height:1.7}
 
+    /* Slider & Gallery */
     .slider-wrap{position:relative; overflow:hidden; border-radius:18px}
     .slider{
       display:flex; gap:16px; transition:transform 800ms cubic-bezier(.2,.8,.2,1);
@@ -212,6 +216,7 @@
     .q[open] summary:after{content:"–"}
     .q .a{padding:0 18px 16px; color:var(--muted); line-height:1.8}
 
+    /* Contact */
     .contact{
       display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:start
     }
@@ -262,9 +267,11 @@
       .gallery{grid-template-columns:repeat(4,1fr)}
     }
     @media(max-width:640px){
-      .cards{grid-template-columns:1fr}
-      .features{grid-template-columns:1fr}
-      .t-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr; gap:24px}
+      .features{grid-template-columns:1fr; gap:24px}
+      .t-grid{grid-template-columns:1fr; gap:20px}
+      .faq{grid-template-columns:1fr; gap:20px}
+      .contact{grid-template-columns:1fr; gap:20px}
       .gallery{grid-template-columns:repeat(2,1fr)}
       .slide{flex:0 0 100%}
       .hero h2{font-size:26px; line-height:1.2}
@@ -273,8 +280,11 @@
       .hero-media{border-radius:16px; aspect-ratio:16/9;}
       .container{padding:0 12px}
       header{padding:0 12px}
-      .sidebar{width:85%}
+      .sidebar{width:85%; right:-85%; height:100vh}
       .feature, .card, .t, .q{padding:16px; border-radius:14px}
+      .side-links{gap:14px}
+      .side-links a{padding:14px 16px}
+      .section{padding:60px 12px} /* مسافة أكبر للأقسام */
     }
   </style>
 </head>
