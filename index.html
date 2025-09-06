@@ -286,9 +286,9 @@ footer{
   .side-links a{padding:14px 16px}
   .section{padding:60px 12px} /* مسافة أكبر للأقسام */
 
-  /* زيادة المسافة بين الهيدر ومحتوى الصفحة على الجوال */
+@media(max-width:640px){
   .hero{
-    padding-top: clamp(120px, 16vh, 178px); /* تعديل المسافة للهاتف */
+    padding-top: calc(var(--header-h) + 5px); /* زيادة بسيطة بمقدار 5px فوق الهيدر */
     padding-bottom: 60px;
   }
 }
@@ -651,6 +651,7 @@ footer{
 </script>
 </body>
 </html>
+
 
 
 
